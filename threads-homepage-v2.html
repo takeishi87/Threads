@@ -1,0 +1,1817 @@
+<style>
+/* ============================================================
+   株式会社Threads - Enhanced Homepage v2
+   WordPress固定ページ用
+============================================================ */
+
+/* Custom Scrollbar */
+#tg-wrap ::-webkit-scrollbar { width: 6px !important; }
+#tg-wrap ::-webkit-scrollbar-track { background: #f0f7ee !important; }
+#tg-wrap ::-webkit-scrollbar-thumb { background: #3a9649 !important; border-radius: 3px !important; }
+
+/* Scroll Progress Bar */
+#tg-progress-bar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, #2d7a3a, #5cb86a, #e8620a) !important;
+  z-index: 9999 !important;
+  width: 0% !important;
+  transition: width 0.1s linear !important;
+}
+
+/* Floating CTA Button */
+#tg-float-btn {
+  position: fixed !important;
+  bottom: 32px !important;
+  right: 32px !important;
+  z-index: 9000 !important;
+  background: linear-gradient(135deg, #e8620a, #f07830) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 50px !important;
+  padding: 14px 22px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  box-shadow: 0 8px 32px rgba(232,98,10,0.4) !important;
+  text-decoration: none !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1) !important;
+  animation: floatPulse 3s ease-in-out infinite !important;
+}
+#tg-float-btn:hover {
+  transform: translateY(-4px) scale(1.05) !important;
+  box-shadow: 0 16px 48px rgba(232,98,10,0.5) !important;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+@keyframes floatPulse {
+  0%,100% { box-shadow: 0 8px 32px rgba(232,98,10,0.4) !important; }
+  50% { box-shadow: 0 8px 40px rgba(232,98,10,0.6), 0 0 0 8px rgba(232,98,10,0.1) !important; }
+}
+
+/* Base */
+#tg-wrap {
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif !important;
+  color: #1a2a1f !important;
+  background: #fff !important;
+  overflow-x: hidden !important;
+  line-height: 1.7 !important;
+}
+#tg-wrap * { box-sizing: border-box !important; }
+#tg-wrap a { color: inherit !important; text-decoration: none !important; }
+#tg-wrap img { max-width: 100% !important; }
+
+/* ============================================================
+   HERO SECTION
+============================================================ */
+#tg-hero {
+  position: relative !important;
+  min-height: 100vh !important;
+  background: linear-gradient(135deg, #0d2417 0%, #1a3d24 35%, #2d7a3a 70%, #1a3d24 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  padding: 120px 24px 100px !important;
+}
+
+/* Particle canvas sits behind content */
+#tg-hero-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Decorative blobs */
+.tg-hero-blob {
+  position: absolute !important;
+  border-radius: 50% !important;
+  filter: blur(80px) !important;
+  opacity: 0.25 !important;
+  pointer-events: none !important;
+}
+.tg-hero-blob-1 {
+  width: 600px !important; height: 600px !important;
+  background: #5cb86a !important;
+  top: -200px !important; right: -100px !important;
+  animation: blobMove1 12s ease-in-out infinite alternate !important;
+}
+.tg-hero-blob-2 {
+  width: 400px !important; height: 400px !important;
+  background: #e8620a !important;
+  bottom: -100px !important; left: -100px !important;
+  animation: blobMove2 10s ease-in-out infinite alternate !important;
+}
+.tg-hero-blob-3 {
+  width: 300px !important; height: 300px !important;
+  background: #3a9649 !important;
+  top: 40% !important; left: 30% !important;
+  animation: blobMove3 14s ease-in-out infinite alternate !important;
+}
+@keyframes blobMove1 { from { transform: translate(0,0) scale(1) !important; } to { transform: translate(40px,-60px) scale(1.15) !important; } }
+@keyframes blobMove2 { from { transform: translate(0,0) scale(1) !important; } to { transform: translate(-30px,50px) scale(1.2) !important; } }
+@keyframes blobMove3 { from { transform: translate(0,0) scale(1) !important; } to { transform: translate(60px,30px) scale(0.9) !important; } }
+
+.tg-hero-inner {
+  position: relative !important;
+  z-index: 2 !important;
+  text-align: center !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+}
+
+.tg-hero-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(92,184,106,0.2) !important;
+  border: 1px solid rgba(92,184,106,0.4) !important;
+  color: #a8e6b0 !important;
+  border-radius: 100px !important;
+  padding: 8px 20px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  margin-bottom: 32px !important;
+  backdrop-filter: blur(10px) !important;
+  animation: fadeInDown 0.8s cubic-bezier(0.34,1.56,0.64,1) both !important;
+}
+.tg-hero-badge::before {
+  content: '✦' !important;
+  color: #5cb86a !important;
+}
+
+.tg-hero-title {
+  font-size: clamp(36px, 6vw, 72px) !important;
+  font-weight: 900 !important;
+  line-height: 1.15 !important;
+  color: #fff !important;
+  margin: 0 0 20px !important;
+  animation: fadeInUp 0.9s 0.15s cubic-bezier(0.34,1.56,0.64,1) both !important;
+}
+.tg-hero-title .tg-grad {
+  background: linear-gradient(90deg, #5cb86a, #a8e6b0, #f07830) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  background-size: 200% !important;
+  animation: gradShift 4s ease infinite !important;
+}
+@keyframes gradShift {
+  0%,100% { background-position: 0% 50% !important; }
+  50% { background-position: 100% 50% !important; }
+}
+
+.tg-hero-sub {
+  font-size: clamp(16px, 2.5vw, 22px) !important;
+  color: rgba(255,255,255,0.8) !important;
+  margin: 0 0 40px !important;
+  font-weight: 400 !important;
+  animation: fadeInUp 0.9s 0.3s cubic-bezier(0.34,1.56,0.64,1) both !important;
+}
+
+.tg-hero-btns {
+  display: flex !important;
+  gap: 16px !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  margin-bottom: 60px !important;
+  animation: fadeInUp 0.9s 0.45s cubic-bezier(0.34,1.56,0.64,1) both !important;
+}
+
+.tg-btn-primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: linear-gradient(135deg, #e8620a, #f07830) !important;
+  color: #fff !important;
+  border-radius: 50px !important;
+  padding: 16px 36px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 8px 32px rgba(232,98,10,0.4) !important;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1) !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+.tg-btn-primary:hover { transform: translateY(-3px) scale(1.03) !important; box-shadow: 0 16px 48px rgba(232,98,10,0.5) !important; }
+
+.tg-btn-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(255,255,255,0.1) !important;
+  color: #fff !important;
+  border: 1.5px solid rgba(255,255,255,0.35) !important;
+  border-radius: 50px !important;
+  padding: 16px 36px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  backdrop-filter: blur(10px) !important;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1) !important;
+  cursor: pointer !important;
+}
+.tg-btn-secondary:hover { background: rgba(255,255,255,0.2) !important; transform: translateY(-3px) !important; }
+
+/* Hero Cards */
+.tg-hero-cards {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 16px !important;
+  max-width: 700px !important;
+  margin: 0 auto 48px !important;
+  animation: fadeInUp 0.9s 0.6s cubic-bezier(0.34,1.56,0.64,1) both !important;
+}
+.tg-hero-card {
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  border-radius: 16px !important;
+  padding: 20px 16px !important;
+  backdrop-filter: blur(16px) !important;
+  transition: all 0.3s ease !important;
+}
+.tg-hero-card:hover { background: rgba(255,255,255,0.14) !important; transform: translateY(-4px) !important; }
+.tg-hero-card-icon { font-size: 28px !important; margin-bottom: 8px !important; }
+.tg-hero-card-label { font-size: 12px !important; color: rgba(255,255,255,0.6) !important; margin-bottom: 4px !important; }
+.tg-hero-card-value { font-size: 18px !important; font-weight: 800 !important; color: #fff !important; }
+
+/* Scroll indicator */
+.tg-scroll-indicator {
+  position: absolute !important;
+  bottom: 32px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: rgba(255,255,255,0.5) !important;
+  font-size: 12px !important;
+  letter-spacing: 0.1em !important;
+  animation: fadeIn 1s 1s both !important;
+}
+.tg-scroll-arrow {
+  width: 24px !important;
+  height: 24px !important;
+  border-right: 2px solid rgba(255,255,255,0.4) !important;
+  border-bottom: 2px solid rgba(255,255,255,0.4) !important;
+  transform: rotate(45deg) !important;
+  animation: scrollBounce 2s ease-in-out infinite !important;
+}
+@keyframes scrollBounce {
+  0%,100% { transform: rotate(45deg) translateY(0) !important; opacity: 0.4 !important; }
+  50% { transform: rotate(45deg) translateY(6px) !important; opacity: 1 !important; }
+}
+
+/* ============================================================
+   MARQUEE TICKER
+============================================================ */
+#tg-ticker {
+  background: linear-gradient(90deg, #2d7a3a, #3a9649) !important;
+  padding: 14px 0 !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+.tg-ticker-track {
+  display: flex !important;
+  gap: 0 !important;
+  animation: tickerScroll 30s linear infinite !important;
+  width: max-content !important;
+}
+.tg-ticker-item {
+  white-space: nowrap !important;
+  color: #fff !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  padding: 0 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+.tg-ticker-sep { color: rgba(255,255,255,0.4) !important; }
+@keyframes tickerScroll { from { transform: translateX(0) !important; } to { transform: translateX(-50%) !important; } }
+
+/* ============================================================
+   STATS COUNTER SECTION
+============================================================ */
+#tg-stats {
+  background: #fff !important;
+  padding: 80px 24px !important;
+}
+.tg-stats-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 24px !important;
+  max-width: 1000px !important;
+  margin: 0 auto !important;
+}
+.tg-stat-card {
+  text-align: center !important;
+  padding: 40px 24px !important;
+  background: #f8f9f4 !important;
+  border-radius: 20px !important;
+  border: 1px solid #e8f0e5 !important;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.tg-stat-card::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, #2d7a3a, #5cb86a) !important;
+}
+.tg-stat-card:hover { transform: translateY(-8px) !important; box-shadow: 0 24px 60px rgba(45,122,58,0.15) !important; }
+.tg-stat-num {
+  font-size: clamp(40px, 5vw, 56px) !important;
+  font-weight: 900 !important;
+  color: #2d7a3a !important;
+  line-height: 1 !important;
+  margin-bottom: 8px !important;
+}
+.tg-stat-num .tg-stat-suffix { font-size: 0.5em !important; color: #3a9649 !important; }
+.tg-stat-label { font-size: 14px !important; color: #5a7a60 !important; font-weight: 600 !important; }
+
+/* ============================================================
+   SECTION SHARED STYLES
+============================================================ */
+.tg-section {
+  padding: 100px 24px !important;
+}
+.tg-section-alt { background: #f8f9f4 !important; }
+.tg-section-dark {
+  background: linear-gradient(135deg, #0d2417, #1a3d24) !important;
+  color: #fff !important;
+}
+
+.tg-section-header {
+  text-align: center !important;
+  margin-bottom: 64px !important;
+}
+.tg-section-eyebrow {
+  display: inline-block !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  color: #2d7a3a !important;
+  background: #f0f7ee !important;
+  border: 1px solid #c8e6cc !important;
+  border-radius: 100px !important;
+  padding: 6px 16px !important;
+  margin-bottom: 16px !important;
+}
+.tg-section-dark .tg-section-eyebrow {
+  color: #a8e6b0 !important;
+  background: rgba(92,184,106,0.15) !important;
+  border-color: rgba(92,184,106,0.3) !important;
+}
+.tg-section-title {
+  font-size: clamp(28px, 4vw, 44px) !important;
+  font-weight: 900 !important;
+  color: #1a2a1f !important;
+  margin: 0 0 16px !important;
+  line-height: 1.25 !important;
+}
+.tg-section-dark .tg-section-title { color: #fff !important; }
+.tg-section-desc {
+  font-size: 17px !important;
+  color: #5a7a60 !important;
+  max-width: 560px !important;
+  margin: 0 auto !important;
+}
+.tg-section-dark .tg-section-desc { color: rgba(255,255,255,0.7) !important; }
+
+.tg-container { max-width: 1100px !important; margin: 0 auto !important; }
+
+/* ============================================================
+   WHY SECTION
+============================================================ */
+#tg-why .tg-why-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 28px !important;
+  max-width: 1060px !important;
+  margin: 0 auto !important;
+}
+.tg-why-card {
+  background: #fff !important;
+  border-radius: 24px !important;
+  padding: 40px 32px !important;
+  border: 1px solid #e8f0e5 !important;
+  box-shadow: 0 4px 24px rgba(45,122,58,0.06) !important;
+  transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.tg-why-card::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important; left: 0 !important;
+  width: 100% !important; height: 4px !important;
+  background: linear-gradient(90deg, #2d7a3a, #5cb86a) !important;
+  transform: scaleX(0) !important;
+  transform-origin: left !important;
+  transition: transform 0.4s ease !important;
+}
+.tg-why-card:hover::after { transform: scaleX(1) !important; }
+.tg-why-card:hover { transform: translateY(-10px) !important; box-shadow: 0 24px 64px rgba(45,122,58,0.14) !important; }
+
+.tg-why-icon {
+  font-size: 48px !important;
+  margin-bottom: 20px !important;
+  display: block !important;
+  width: 72px !important;
+  height: 72px !important;
+  background: #f0f7ee !important;
+  border-radius: 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 24px !important;
+  transition: transform 0.3s ease !important;
+}
+.tg-why-card:hover .tg-why-icon { transform: scale(1.1) rotate(-5deg) !important; }
+
+.tg-why-num {
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  color: #2d7a3a !important;
+  letter-spacing: 0.1em !important;
+  margin-bottom: 12px !important;
+}
+.tg-why-card-title {
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  color: #1a2a1f !important;
+  margin: 0 0 12px !important;
+  line-height: 1.3 !important;
+}
+.tg-why-card-desc {
+  font-size: 15px !important;
+  color: #5a7a60 !important;
+  line-height: 1.75 !important;
+  margin: 0 0 24px !important;
+}
+
+/* Progress bar */
+.tg-progress-bar-wrap {
+  margin-top: 20px !important;
+}
+.tg-progress-label {
+  display: flex !important;
+  justify-content: space-between !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #2d7a3a !important;
+  margin-bottom: 6px !important;
+}
+.tg-progress-track {
+  height: 6px !important;
+  background: #e8f0e5 !important;
+  border-radius: 100px !important;
+  overflow: hidden !important;
+}
+.tg-progress-fill {
+  height: 100% !important;
+  background: linear-gradient(90deg, #2d7a3a, #5cb86a) !important;
+  border-radius: 100px !important;
+  width: 0 !important;
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1) !important;
+}
+
+/* ============================================================
+   FLOW / TIMELINE SECTION
+============================================================ */
+#tg-flow {
+  background: #f8f9f4 !important;
+}
+.tg-timeline {
+  max-width: 820px !important;
+  margin: 0 auto !important;
+  position: relative !important;
+}
+.tg-timeline::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 40px !important;
+  top: 0 !important; bottom: 0 !important;
+  width: 2px !important;
+  background: linear-gradient(180deg, #2d7a3a, #5cb86a, #e8620a) !important;
+}
+.tg-timeline-item {
+  display: flex !important;
+  gap: 40px !important;
+  margin-bottom: 48px !important;
+  position: relative !important;
+  opacity: 0 !important;
+  transform: translateX(-30px) !important;
+  transition: all 0.6s cubic-bezier(0.34,1.56,0.64,1) !important;
+}
+.tg-timeline-item.tg-visible {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+.tg-timeline-item:last-child { margin-bottom: 0 !important; }
+
+.tg-timeline-dot {
+  flex-shrink: 0 !important;
+  width: 80px !important;
+  height: 80px !important;
+  background: #fff !important;
+  border: 3px solid #2d7a3a !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 28px !important;
+  position: relative !important;
+  z-index: 1 !important;
+  box-shadow: 0 0 0 6px #f8f9f4 !important;
+  transition: all 0.3s ease !important;
+}
+.tg-timeline-item:hover .tg-timeline-dot {
+  background: #2d7a3a !important;
+  box-shadow: 0 0 0 6px #f8f9f4, 0 8px 32px rgba(45,122,58,0.3) !important;
+}
+
+.tg-timeline-content {
+  flex: 1 !important;
+  background: #fff !important;
+  border-radius: 20px !important;
+  padding: 28px 32px !important;
+  border: 1px solid #e8f0e5 !important;
+  box-shadow: 0 4px 20px rgba(45,122,58,0.05) !important;
+  transition: all 0.3s ease !important;
+  margin-top: 8px !important;
+}
+.tg-timeline-item:hover .tg-timeline-content { box-shadow: 0 12px 40px rgba(45,122,58,0.12) !important; transform: translateX(6px) !important; }
+
+.tg-timeline-step {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.15em !important;
+  color: #2d7a3a !important;
+  margin-bottom: 8px !important;
+}
+.tg-timeline-title {
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  color: #1a2a1f !important;
+  margin: 0 0 10px !important;
+}
+.tg-timeline-desc {
+  font-size: 15px !important;
+  color: #5a7a60 !important;
+  line-height: 1.7 !important;
+  margin: 0 !important;
+}
+.tg-timeline-tag {
+  display: inline-block !important;
+  background: #f0f7ee !important;
+  color: #2d7a3a !important;
+  border-radius: 100px !important;
+  padding: 4px 12px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  margin-top: 12px !important;
+}
+
+/* ============================================================
+   VISA SECTION
+============================================================ */
+#tg-visa {
+  background: #fff !important;
+}
+.tg-visa-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 24px !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+}
+.tg-visa-card {
+  border-radius: 24px !important;
+  padding: 36px !important;
+  border: 1px solid #e8f0e5 !important;
+  background: #fff !important;
+  box-shadow: 0 4px 24px rgba(45,122,58,0.06) !important;
+  transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.tg-visa-card::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  height: 4px !important;
+  background: linear-gradient(90deg, #2d7a3a, #5cb86a) !important;
+}
+.tg-visa-card:hover { transform: translateY(-8px) !important; box-shadow: 0 24px 60px rgba(45,122,58,0.14) !important; }
+
+.tg-visa-icon {
+  font-size: 36px !important;
+  width: 64px !important;
+  height: 64px !important;
+  background: #f0f7ee !important;
+  border-radius: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 20px !important;
+  transition: transform 0.3s ease !important;
+}
+.tg-visa-card:hover .tg-visa-icon { transform: scale(1.1) !important; }
+.tg-visa-tags { display: flex !important; flex-wrap: wrap !important; gap: 8px !important; margin-bottom: 16px !important; }
+.tg-visa-tag {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 4px 10px !important;
+  border-radius: 100px !important;
+  background: #f0f7ee !important;
+  color: #2d7a3a !important;
+  border: 1px solid #c8e6cc !important;
+}
+.tg-visa-tag-orange {
+  background: #fff5f0 !important;
+  color: #e8620a !important;
+  border-color: #f5c6a8 !important;
+}
+.tg-visa-title {
+  font-size: 19px !important;
+  font-weight: 800 !important;
+  color: #1a2a1f !important;
+  margin: 0 0 10px !important;
+}
+.tg-visa-desc {
+  font-size: 14px !important;
+  color: #5a7a60 !important;
+  line-height: 1.7 !important;
+  margin: 0 !important;
+}
+.tg-visa-badge {
+  position: absolute !important;
+  top: 20px !important; right: 20px !important;
+  background: linear-gradient(135deg, #e8620a, #f07830) !important;
+  color: #fff !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 4px 12px !important;
+  border-radius: 100px !important;
+}
+
+/* ============================================================
+   COUNTRIES SECTION
+============================================================ */
+#tg-countries {
+  background: #f8f9f4 !important;
+}
+.tg-countries-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 20px !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+}
+.tg-country-card {
+  background: #fff !important;
+  border-radius: 20px !important;
+  padding: 28px 24px !important;
+  border: 1px solid #e8f0e5 !important;
+  text-align: center !important;
+  transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1) !important;
+  cursor: pointer !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.tg-country-card::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(135deg, rgba(45,122,58,0.05), rgba(92,184,106,0.08)) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+.tg-country-card:hover::before { opacity: 1 !important; }
+.tg-country-card:hover { transform: translateY(-8px) scale(1.02) !important; box-shadow: 0 20px 56px rgba(45,122,58,0.15) !important; }
+
+.tg-country-flag { font-size: 52px !important; margin-bottom: 12px !important; display: block !important; line-height: 1 !important; }
+.tg-country-name {
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  color: #1a2a1f !important;
+  margin-bottom: 6px !important;
+}
+.tg-country-info {
+  font-size: 12px !important;
+  color: #7a9a80 !important;
+  line-height: 1.4 !important;
+}
+.tg-country-card .tg-country-tooltip {
+  position: absolute !important;
+  bottom: 0 !important; left: 0 !important; right: 0 !important;
+  background: linear-gradient(135deg, #2d7a3a, #3a9649) !important;
+  color: #fff !important;
+  padding: 12px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  transform: translateY(100%) !important;
+  transition: transform 0.3s ease !important;
+}
+.tg-country-card:hover .tg-country-tooltip { transform: translateY(0) !important; }
+
+/* ============================================================
+   TARGETS SECTION
+============================================================ */
+#tg-targets {
+  background: #fff !important;
+}
+.tg-targets-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 28px !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+}
+.tg-target-card {
+  border-radius: 28px !important;
+  padding: 48px 40px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1) !important;
+}
+.tg-target-card-company {
+  background: linear-gradient(135deg, #0d2417, #1a3d24) !important;
+  color: #fff !important;
+}
+.tg-target-card-student {
+  background: linear-gradient(135deg, #fff5f0, #fff8f5) !important;
+  border: 2px solid #f5c6a8 !important;
+  color: #1a2a1f !important;
+}
+.tg-target-card:hover { transform: translateY(-8px) !important; box-shadow: 0 32px 80px rgba(0,0,0,0.15) !important; }
+
+.tg-target-icon {
+  font-size: 48px !important;
+  margin-bottom: 20px !important;
+  display: block !important;
+}
+.tg-target-label {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+  opacity: 0.7 !important;
+  margin-bottom: 8px !important;
+}
+.tg-target-title {
+  font-size: 26px !important;
+  font-weight: 900 !important;
+  margin: 0 0 16px !important;
+  line-height: 1.25 !important;
+}
+.tg-target-card-company .tg-target-title { color: #fff !important; }
+.tg-target-desc {
+  font-size: 15px !important;
+  line-height: 1.75 !important;
+  margin: 0 0 24px !important;
+  opacity: 0.85 !important;
+}
+.tg-target-list {
+  list-style: none !important;
+  padding: 0 !important; margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+.tg-target-list li {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  font-size: 14px !important;
+}
+.tg-target-list li::before {
+  content: '✓' !important;
+  flex-shrink: 0 !important;
+  width: 20px !important; height: 20px !important;
+  background: rgba(255,255,255,0.15) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  margin-top: 2px !important;
+}
+.tg-target-card-student .tg-target-list li::before {
+  background: rgba(232,98,10,0.1) !important;
+  color: #e8620a !important;
+}
+.tg-target-card-company .tg-target-list li::before { color: #5cb86a !important; }
+
+/* ============================================================
+   FAQ SECTION
+============================================================ */
+#tg-faq {
+  background: #f8f9f4 !important;
+}
+.tg-faq-list {
+  max-width: 760px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+.tg-faq-item {
+  background: #fff !important;
+  border-radius: 16px !important;
+  border: 1px solid #e8f0e5 !important;
+  overflow: hidden !important;
+  transition: box-shadow 0.3s ease !important;
+}
+.tg-faq-item.tg-open { box-shadow: 0 8px 40px rgba(45,122,58,0.12) !important; }
+.tg-faq-q {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  padding: 22px 28px !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  text-align: left !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #1a2a1f !important;
+  transition: background 0.2s ease !important;
+}
+.tg-faq-q:hover { background: #f8f9f4 !important; }
+.tg-faq-q-icon {
+  flex-shrink: 0 !important;
+  width: 28px !important; height: 28px !important;
+  background: #f0f7ee !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 14px !important;
+  color: #2d7a3a !important;
+  font-weight: 900 !important;
+  font-style: normal !important;
+}
+.tg-faq-q-text { flex: 1 !important; }
+.tg-faq-chevron {
+  flex-shrink: 0 !important;
+  width: 20px !important; height: 20px !important;
+  transition: transform 0.3s ease !important;
+  color: #2d7a3a !important;
+}
+.tg-faq-item.tg-open .tg-faq-chevron { transform: rotate(180deg) !important; }
+.tg-faq-a {
+  max-height: 0 !important;
+  overflow: hidden !important;
+  transition: max-height 0.4s ease, padding 0.3s ease !important;
+}
+.tg-faq-item.tg-open .tg-faq-a { max-height: 300px !important; }
+.tg-faq-a-inner {
+  padding: 0 28px 24px 72px !important;
+  font-size: 15px !important;
+  color: #5a7a60 !important;
+  line-height: 1.75 !important;
+}
+
+/* ============================================================
+   TESTIMONIALS
+============================================================ */
+#tg-voice {
+  background: #fff !important;
+}
+.tg-voice-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+  max-width: 1060px !important;
+  margin: 0 auto !important;
+}
+.tg-voice-card {
+  background: #f8f9f4 !important;
+  border-radius: 24px !important;
+  padding: 32px 28px !important;
+  border: 1px solid #e8f0e5 !important;
+  transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.tg-voice-card::before {
+  content: '"' !important;
+  position: absolute !important;
+  top: -10px !important; left: 20px !important;
+  font-size: 100px !important;
+  color: rgba(45,122,58,0.08) !important;
+  font-family: Georgia, serif !important;
+  line-height: 1 !important;
+  pointer-events: none !important;
+}
+.tg-voice-card:hover { transform: translateY(-8px) !important; box-shadow: 0 24px 64px rgba(45,122,58,0.12) !important; background: #fff !important; }
+
+.tg-voice-stars { display: flex !important; gap: 4px !important; margin-bottom: 16px !important; }
+.tg-voice-star { font-size: 16px !important; color: #f5a623 !important; }
+.tg-voice-text {
+  font-size: 15px !important;
+  color: #3a4a3f !important;
+  line-height: 1.75 !important;
+  margin: 0 0 24px !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+.tg-voice-author {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+.tg-voice-avatar {
+  width: 44px !important; height: 44px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #2d7a3a, #5cb86a) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  flex-shrink: 0 !important;
+}
+.tg-voice-author-name {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #1a2a1f !important;
+}
+.tg-voice-author-role {
+  font-size: 12px !important;
+  color: #7a9a80 !important;
+}
+.tg-voice-tag {
+  display: inline-block !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 3px 10px !important;
+  border-radius: 100px !important;
+  background: #f0f7ee !important;
+  color: #2d7a3a !important;
+  border: 1px solid #c8e6cc !important;
+  margin-bottom: 12px !important;
+}
+
+/* ============================================================
+   CTA SECTION
+============================================================ */
+#tg-cta {
+  position: relative !important;
+  overflow: hidden !important;
+  background: linear-gradient(135deg, #0d2417 0%, #1a3d24 40%, #2d7a3a 70%, #1a3d24 100%) !important;
+  padding: 120px 24px !important;
+  text-align: center !important;
+}
+.tg-cta-blob {
+  position: absolute !important;
+  border-radius: 50% !important;
+  filter: blur(100px) !important;
+  pointer-events: none !important;
+}
+.tg-cta-blob-1 {
+  width: 500px !important; height: 500px !important;
+  background: rgba(92,184,106,0.2) !important;
+  top: -200px !important; right: -100px !important;
+  animation: blobMove1 14s ease-in-out infinite alternate !important;
+}
+.tg-cta-blob-2 {
+  width: 400px !important; height: 400px !important;
+  background: rgba(232,98,10,0.2) !important;
+  bottom: -150px !important; left: -100px !important;
+  animation: blobMove2 11s ease-in-out infinite alternate !important;
+}
+#tg-cta .tg-container { position: relative !important; z-index: 2 !important; }
+#tg-cta .tg-section-title { color: #fff !important; margin-bottom: 16px !important; }
+#tg-cta .tg-section-desc { color: rgba(255,255,255,0.75) !important; margin-bottom: 40px !important; }
+
+.tg-cta-btns {
+  display: flex !important;
+  gap: 16px !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  margin-bottom: 48px !important;
+}
+.tg-cta-sub {
+  font-size: 14px !important;
+  color: rgba(255,255,255,0.5) !important;
+}
+
+/* Floating shapes in CTA */
+.tg-cta-shape {
+  position: absolute !important;
+  pointer-events: none !important;
+  opacity: 0.1 !important;
+}
+.tg-cta-shape-1 {
+  width: 200px !important; height: 200px !important;
+  border: 2px solid #5cb86a !important;
+  border-radius: 50% !important;
+  top: 10% !important; left: 5% !important;
+  animation: rotateSlow 20s linear infinite !important;
+}
+.tg-cta-shape-2 {
+  width: 120px !important; height: 120px !important;
+  border: 2px solid #f07830 !important;
+  border-radius: 20px !important;
+  bottom: 15% !important; right: 8% !important;
+  animation: rotateSlow 15s linear infinite reverse !important;
+}
+@keyframes rotateSlow { from { transform: rotate(0deg) !important; } to { transform: rotate(360deg) !important; } }
+
+/* ============================================================
+   ENTRANCE ANIMATIONS
+============================================================ */
+@keyframes fadeIn { from { opacity: 0 !important; } to { opacity: 1 !important; } }
+@keyframes fadeInUp { from { opacity: 0 !important; transform: translateY(40px) !important; } to { opacity: 1 !important; transform: translateY(0) !important; } }
+@keyframes fadeInDown { from { opacity: 0 !important; transform: translateY(-30px) !important; } to { opacity: 1 !important; transform: translateY(0) !important; } }
+
+.tg-reveal {
+  opacity: 0 !important;
+  transform: translateY(32px) !important;
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.34,1.56,0.64,1) !important;
+}
+.tg-reveal.tg-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+.tg-reveal-delay-1 { transition-delay: 0.1s !important; }
+.tg-reveal-delay-2 { transition-delay: 0.2s !important; }
+.tg-reveal-delay-3 { transition-delay: 0.3s !important; }
+
+/* ============================================================
+   GLASSMORPHISM UTILITY
+============================================================ */
+.tg-glass {
+  background: rgba(255,255,255,0.7) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255,255,255,0.5) !important;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 900px) {
+  .tg-stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .tg-why-grid { grid-template-columns: 1fr !important; }
+  .tg-visa-grid { grid-template-columns: 1fr !important; }
+  .tg-voice-grid { grid-template-columns: 1fr !important; }
+  .tg-targets-grid { grid-template-columns: 1fr !important; }
+  .tg-countries-grid { grid-template-columns: repeat(3, 1fr) !important; }
+  .tg-hero-cards { grid-template-columns: repeat(3, 1fr) !important; }
+}
+@media (max-width: 640px) {
+  .tg-section { padding: 72px 20px !important; }
+  .tg-stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+  .tg-countries-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .tg-hero-cards { grid-template-columns: 1fr !important; gap: 10px !important; }
+  .tg-timeline::before { left: 28px !important; }
+  .tg-timeline-dot { width: 56px !important; height: 56px !important; font-size: 20px !important; }
+  #tg-float-btn { bottom: 20px !important; right: 16px !important; padding: 12px 18px !important; font-size: 13px !important; }
+  .tg-faq-a-inner { padding-left: 48px !important; }
+}
+</style>
+
+<div id="tg-wrap">
+
+<!-- Scroll Progress Bar -->
+<div id="tg-progress-bar"></div>
+
+<!-- Floating Contact Button -->
+<a href="#tg-cta" id="tg-float-btn" aria-label="お問い合わせ">
+  <span>💬</span>
+  <span>お問い合わせ</span>
+</a>
+
+<!-- ============================================================
+     HERO SECTION
+============================================================ -->
+<section id="tg-hero">
+  <canvas id="tg-hero-canvas"></canvas>
+  <div class="tg-hero-blob tg-hero-blob-1"></div>
+  <div class="tg-hero-blob tg-hero-blob-2"></div>
+  <div class="tg-hero-blob tg-hero-blob-3"></div>
+
+  <div class="tg-hero-inner">
+    <div class="tg-hero-badge">外国人材採用・インターンシップ支援のプロフェッショナル</div>
+
+    <h1 class="tg-hero-title">
+      世界の優秀な人材と、<br>
+      <span class="tg-grad">日本の企業をつなぐ</span>
+    </h1>
+
+    <p class="tg-hero-sub">
+      採用から就労ビザまで、外国人材採用のすべてをワンストップで支援します
+    </p>
+
+    <div class="tg-hero-btns">
+      <a href="#tg-cta" class="tg-btn-primary">
+        <span>🚀</span> 無料相談を予約する
+      </a>
+      <a href="#tg-flow" class="tg-btn-secondary">
+        <span>📋</span> ご利用の流れを見る
+      </a>
+    </div>
+
+    <div class="tg-hero-cards">
+      <div class="tg-hero-card">
+        <div class="tg-hero-card-icon">🏢</div>
+        <div class="tg-hero-card-label">導入企業</div>
+        <div class="tg-hero-card-value">50社以上</div>
+      </div>
+      <div class="tg-hero-card">
+        <div class="tg-hero-card-icon">🌏</div>
+        <div class="tg-hero-card-label">対応国籍</div>
+        <div class="tg-hero-card-value">9カ国</div>
+      </div>
+      <div class="tg-hero-card">
+        <div class="tg-hero-card-icon">✅</div>
+        <div class="tg-hero-card-label">採用成功率</div>
+        <div class="tg-hero-card-value">94%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tg-scroll-indicator">
+    <span>SCROLL</span>
+    <div class="tg-scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MARQUEE TICKER
+============================================================ -->
+<div id="tg-ticker" aria-hidden="true">
+  <div class="tg-ticker-track" id="tg-ticker-track">
+    <span class="tg-ticker-item">🌏 9カ国対応 <span class="tg-ticker-sep">｜</span></span>
+    <span class="tg-ticker-item">📋 就労ビザ申請サポート <span class="tg-ticker-sep">｜</span></span>
+    <span class="tg-ticker-item">🎓 インターンシップ支援 <span class="tg-ticker-sep">｜</span></span>
+    <span class="tg-ticker-item">💼 採用後の定着サポート <span class="tg-ticker-sep">｜</span></span>
+    <span class="tg-ticker-item">🏆 採用成功率 94% <span class="tg-ticker-sep">｜</span></span>
+    <span class="tg-ticker-item">🤝 ワンストップ支援 <span class="tg-ticker-sep">｜</span></span>
+    <span class="tg-ticker-item">📞 無料相談実施中 <span class="tg-ticker-sep">｜</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="tg-ticker-item">🌏 9カ国対応 <span class="tg-ticker-sep">｜</span></span>
+    <span class="tg-ticker-item">📋 就労ビザ申請サポート <span class="tg-ticker-sep">｜</span></span>
+    <span class="tg-ticker-item">🎓 インターンシップ支援 <span class="tg-ticker-sep">｜</span></span>
+    <span class="tg-ticker-item">💼 採用後の定着サポート <span class="tg-ticker-sep">｜</span></span>
+    <span class="tg-ticker-item">🏆 採用成功率 94% <span class="tg-ticker-sep">｜</span></span>
+    <span class="tg-ticker-item">🤝 ワンストップ支援 <span class="tg-ticker-sep">｜</span></span>
+    <span class="tg-ticker-item">📞 無料相談実施中 <span class="tg-ticker-sep">｜</span></span>
+  </div>
+</div>
+
+<!-- ============================================================
+     STATS COUNTER SECTION
+============================================================ -->
+<section id="tg-stats" class="tg-section" style="padding-top: 80px !important; padding-bottom: 80px !important;">
+  <div class="tg-container">
+    <div class="tg-stats-grid">
+      <div class="tg-stat-card tg-reveal">
+        <div class="tg-stat-num"><span class="tg-count" data-target="50">0</span><span class="tg-stat-suffix">+社</span></div>
+        <div class="tg-stat-label">導入企業数</div>
+      </div>
+      <div class="tg-stat-card tg-reveal tg-reveal-delay-1">
+        <div class="tg-stat-num"><span class="tg-count" data-target="94">0</span><span class="tg-stat-suffix">%</span></div>
+        <div class="tg-stat-label">採用成功率</div>
+      </div>
+      <div class="tg-stat-card tg-reveal tg-reveal-delay-2">
+        <div class="tg-stat-num"><span class="tg-count" data-target="9">0</span><span class="tg-stat-suffix">カ国</span></div>
+        <div class="tg-stat-label">対応国籍</div>
+      </div>
+      <div class="tg-stat-card tg-reveal tg-reveal-delay-3">
+        <div class="tg-stat-num"><span class="tg-count" data-target="87">0</span><span class="tg-stat-suffix">%</span></div>
+        <div class="tg-stat-label">平均定着率</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY SECTION
+============================================================ -->
+<section id="tg-why" class="tg-section tg-section-alt">
+  <div class="tg-container">
+    <div class="tg-section-header tg-reveal">
+      <span class="tg-section-eyebrow">WHY THREADS</span>
+      <h2 class="tg-section-title">選ばれる3つの理由</h2>
+      <p class="tg-section-desc">外国人材採用を成功させるために、私たちが徹底的にサポートします</p>
+    </div>
+
+    <div class="tg-why-grid">
+      <!-- Card 1 -->
+      <div class="tg-why-card tg-reveal">
+        <div class="tg-why-icon">🎯</div>
+        <div class="tg-why-num">REASON 01</div>
+        <h3 class="tg-why-card-title">厳選されたマッチング精度</h3>
+        <p class="tg-why-card-desc">業種・スキル・文化適性を多角的に分析し、企業と人材の最適なマッチングを実現。採用後の定着率向上につながる精密な選考プロセスを提供します。</p>
+        <div class="tg-progress-bar-wrap">
+          <div class="tg-progress-label"><span>マッチング精度</span><span>94%</span></div>
+          <div class="tg-progress-track"><div class="tg-progress-fill" data-width="94"></div></div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="tg-why-card tg-reveal tg-reveal-delay-1">
+        <div class="tg-why-icon">🛡️</div>
+        <div class="tg-why-num">REASON 02</div>
+        <h3 class="tg-why-card-title">ビザ・法務の完全サポート</h3>
+        <p class="tg-why-card-desc">就労ビザの申請から更新まで、複雑な入管手続きを専門チームが全面サポート。企業が本業に集中できる環境を整えます。</p>
+        <div class="tg-progress-bar-wrap">
+          <div class="tg-progress-label"><span>ビザ取得成功率</span><span>99%</span></div>
+          <div class="tg-progress-track"><div class="tg-progress-fill" data-width="99"></div></div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="tg-why-card tg-reveal tg-reveal-delay-2">
+        <div class="tg-why-icon">🌱</div>
+        <div class="tg-why-num">REASON 03</div>
+        <h3 class="tg-why-card-title">採用後も続く定着支援</h3>
+        <p class="tg-why-card-desc">入社後の生活サポート・日本語研修・メンタルケアまで、長期的な定着を実現するアフターフォロー体制を構築しています。</p>
+        <div class="tg-progress-bar-wrap">
+          <div class="tg-progress-label"><span>1年後定着率</span><span>87%</span></div>
+          <div class="tg-progress-track"><div class="tg-progress-fill" data-width="87"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FLOW SECTION (Vertical Timeline)
+============================================================ -->
+<section id="tg-flow" class="tg-section">
+  <div class="tg-container">
+    <div class="tg-section-header tg-reveal">
+      <span class="tg-section-eyebrow">HOW IT WORKS</span>
+      <h2 class="tg-section-title">ご利用の流れ</h2>
+      <p class="tg-section-desc">初回相談から採用完了まで、すべてのステップで専任担当がサポートします</p>
+    </div>
+
+    <div class="tg-timeline">
+      <div class="tg-timeline-item">
+        <div class="tg-timeline-dot">💬</div>
+        <div class="tg-timeline-content">
+          <div class="tg-timeline-step">STEP 01</div>
+          <h3 class="tg-timeline-title">無料初回相談</h3>
+          <p class="tg-timeline-desc">採用ニーズ・職種・条件などをヒアリング。最適なプランをご提案します。オンライン・対面どちらでも対応可能です。</p>
+          <span class="tg-timeline-tag">所要時間：約60分</span>
+        </div>
+      </div>
+
+      <div class="tg-timeline-item">
+        <div class="tg-timeline-dot">🔍</div>
+        <div class="tg-timeline-content">
+          <div class="tg-timeline-step">STEP 02</div>
+          <h3 class="tg-timeline-title">候補者のご提案・選考支援</h3>
+          <p class="tg-timeline-desc">独自のネットワークから厳選した候補者をご提案。書類選考・面接のアレンジ・通訳サポートまで一括対応します。</p>
+          <span class="tg-timeline-tag">平均提案期間：1〜2週間</span>
+        </div>
+      </div>
+
+      <div class="tg-timeline-item">
+        <div class="tg-timeline-dot">📋</div>
+        <div class="tg-timeline-content">
+          <div class="tg-timeline-step">STEP 03</div>
+          <h3 class="tg-timeline-title">ビザ申請・入管手続き</h3>
+          <p class="tg-timeline-desc">採用決定後、就労ビザの申請書類作成から出入国在留管理局への提出まで、専門スタッフが完全サポートします。</p>
+          <span class="tg-timeline-tag">ビザ取得成功率：99%</span>
+        </div>
+      </div>
+
+      <div class="tg-timeline-item">
+        <div class="tg-timeline-dot">🌱</div>
+        <div class="tg-timeline-content">
+          <div class="tg-timeline-step">STEP 04</div>
+          <h3 class="tg-timeline-title">入社後フォローアップ</h3>
+          <p class="tg-timeline-desc">入社後も継続的にサポート。生活環境の整備・日本語研修・定期面談を通じて、長期的な定着を実現します。</p>
+          <span class="tg-timeline-tag">1年後定着率：87%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     VISA TYPES SECTION
+============================================================ -->
+<section id="tg-visa" class="tg-section tg-section-alt">
+  <div class="tg-container">
+    <div class="tg-section-header tg-reveal">
+      <span class="tg-section-eyebrow">VISA SUPPORT</span>
+      <h2 class="tg-section-title">対応ビザの種類</h2>
+      <p class="tg-section-desc">あらゆる就労形態に対応したビザ申請をサポートします</p>
+    </div>
+
+    <div class="tg-visa-grid">
+      <div class="tg-visa-card tg-reveal">
+        <div class="tg-visa-badge">最多申請</div>
+        <div class="tg-visa-icon">💼</div>
+        <div class="tg-visa-tags">
+          <span class="tg-visa-tag">正社員</span>
+          <span class="tg-visa-tag">フルタイム</span>
+        </div>
+        <h3 class="tg-visa-title">技術・人文知識・国際業務</h3>
+        <p class="tg-visa-desc">エンジニア、マーケター、通訳・翻訳など、専門知識を活かした業務に従事する外国人材のビザ。最も申請件数が多い就労ビザです。</p>
+      </div>
+
+      <div class="tg-visa-card tg-reveal tg-reveal-delay-1">
+        <div class="tg-visa-icon">🎓</div>
+        <div class="tg-visa-tags">
+          <span class="tg-visa-tag">学生</span>
+          <span class="tg-visa-tag-orange">インターン</span>
+        </div>
+        <h3 class="tg-visa-title">インターンシップ（資格外活動）</h3>
+        <p class="tg-visa-desc">留学ビザを持つ外国人留学生が、週28時間以内でインターンとして活躍できる制度。将来の正規採用へのパスウェイとして活用されています。</p>
+      </div>
+
+      <div class="tg-visa-card tg-reveal tg-reveal-delay-2">
+        <div class="tg-visa-icon">🌟</div>
+        <div class="tg-visa-tags">
+          <span class="tg-visa-tag">高度人材</span>
+          <span class="tg-visa-tag-orange">優遇制度</span>
+        </div>
+        <h3 class="tg-visa-title">高度専門職ビザ</h3>
+        <p class="tg-visa-desc">学歴・職歴・年収などをポイント制で評価し、優秀な外国人材に付与される特別なビザ。永住権取得の優遇など多くのメリットがあります。</p>
+      </div>
+
+      <div class="tg-visa-card tg-reveal tg-reveal-delay-3">
+        <div class="tg-visa-icon">🔧</div>
+        <div class="tg-visa-tags">
+          <span class="tg-visa-tag">技能職</span>
+          <span class="tg-visa-tag">製造業</span>
+        </div>
+        <h3 class="tg-visa-title">特定技能ビザ</h3>
+        <p class="tg-visa-desc">介護・建設・農業・飲食など14分野で即戦力となる外国人材を受け入れるためのビザ。技能評価試験に合格した人材を採用できます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COUNTRIES SECTION
+============================================================ -->
+<section id="tg-countries" class="tg-section">
+  <div class="tg-container">
+    <div class="tg-section-header tg-reveal">
+      <span class="tg-section-eyebrow">GLOBAL NETWORK</span>
+      <h2 class="tg-section-title">対応国・地域</h2>
+      <p class="tg-section-desc">アジアを中心に9カ国の優秀な人材ネットワークを持っています</p>
+    </div>
+
+    <div class="tg-countries-grid">
+      <div class="tg-country-card tg-reveal">
+        <span class="tg-country-flag">🇻🇳</span>
+        <div class="tg-country-name">ベトナム</div>
+        <div class="tg-country-info">IT・製造・サービス業</div>
+        <div class="tg-country-tooltip">勤勉で向学心が高く、IT人材が豊富</div>
+      </div>
+      <div class="tg-country-card tg-reveal tg-reveal-delay-1">
+        <span class="tg-country-flag">🇵🇭</span>
+        <div class="tg-country-name">フィリピン</div>
+        <div class="tg-country-info">英語・介護・ホスピタリティ</div>
+        <div class="tg-country-tooltip">英語力と明るいコミュニケーション力が強み</div>
+      </div>
+      <div class="tg-country-card tg-reveal tg-reveal-delay-2">
+        <span class="tg-country-flag">🇮🇩</span>
+        <div class="tg-country-name">インドネシア</div>
+        <div class="tg-country-info">製造・IT・農業</div>
+        <div class="tg-country-tooltip">若い労働人口と高い成長意欲</div>
+      </div>
+      <div class="tg-country-card tg-reveal">
+        <span class="tg-country-flag">🇲🇾</span>
+        <div class="tg-country-name">マレーシア</div>
+        <div class="tg-country-info">IT・金融・エンジニア</div>
+        <div class="tg-country-tooltip">多言語対応可能な高度人材が多い</div>
+      </div>
+      <div class="tg-country-card tg-reveal tg-reveal-delay-1">
+        <span class="tg-country-flag">🇹🇭</span>
+        <div class="tg-country-name">タイ</div>
+        <div class="tg-country-info">製造・観光・貿易</div>
+        <div class="tg-country-tooltip">日系企業での就労経験者が豊富</div>
+      </div>
+      <div class="tg-country-card tg-reveal tg-reveal-delay-2">
+        <span class="tg-country-flag">🇲🇲</span>
+        <div class="tg-country-name">ミャンマー</div>
+        <div class="tg-country-info">製造・建設・農業</div>
+        <div class="tg-country-tooltip">真面目で協調性の高い人材</div>
+      </div>
+      <div class="tg-country-card tg-reveal">
+        <span class="tg-country-flag">🇮🇳</span>
+        <div class="tg-country-name">インド</div>
+        <div class="tg-country-info">IT・エンジニア・理系</div>
+        <div class="tg-country-tooltip">世界トップクラスのIT・技術人材</div>
+      </div>
+      <div class="tg-country-card tg-reveal tg-reveal-delay-1">
+        <span class="tg-country-flag">🇧🇩</span>
+        <div class="tg-country-name">バングラデシュ</div>
+        <div class="tg-country-info">IT・製造・縫製</div>
+        <div class="tg-country-tooltip">急成長するIT人材の供給国</div>
+      </div>
+      <div class="tg-country-card tg-reveal tg-reveal-delay-2">
+        <span class="tg-country-flag">🇳🇵</span>
+        <div class="tg-country-name">ネパール</div>
+        <div class="tg-country-info">飲食・小売・介護</div>
+        <div class="tg-country-tooltip">日本語習得意欲が高く、誠実な人柄</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TARGETS SECTION
+============================================================ -->
+<section id="tg-targets" class="tg-section tg-section-alt">
+  <div class="tg-container">
+    <div class="tg-section-header tg-reveal">
+      <span class="tg-section-eyebrow">FOR YOU</span>
+      <h2 class="tg-section-title">こんな方々のために</h2>
+      <p class="tg-section-desc">企業・学生それぞれのニーズに合わせたサービスをご提供します</p>
+    </div>
+
+    <div class="tg-targets-grid">
+      <!-- Companies -->
+      <div class="tg-target-card tg-target-card-company tg-reveal">
+        <span class="tg-target-icon">🏢</span>
+        <div class="tg-target-label">FOR COMPANIES</div>
+        <h3 class="tg-target-title">外国人材採用を<br>検討している企業様へ</h3>
+        <p class="tg-target-desc">人手不足の解消から、グローバル展開に向けた多様な人材確保まで、貴社のニーズに合わせた最適なソリューションをご提案します。</p>
+        <ul class="tg-target-list">
+          <li>即戦力となる専門人材の採用</li>
+          <li>インターンシップ制度の活用</li>
+          <li>ビザ・法務手続きの完全代行</li>
+          <li>採用後の定着・生活サポート</li>
+          <li>多文化チームマネジメント研修</li>
+        </ul>
+      </div>
+
+      <!-- Students -->
+      <div class="tg-target-card tg-target-card-student tg-reveal tg-reveal-delay-1">
+        <span class="tg-target-icon">🎓</span>
+        <div class="tg-target-label">FOR STUDENTS</div>
+        <h3 class="tg-target-title">日本でキャリアを<br>築きたい留学生の方へ</h3>
+        <p class="tg-target-desc">日本での就職・インターンシップを目指す留学生を全力でサポート。就活から生活まで、あらゆるシーンで心強い味方になります。</p>
+        <ul class="tg-target-list">
+          <li>インターンシップ先のご紹介</li>
+          <li>就職活動・履歴書作成支援</li>
+          <li>日本語研修プログラム</li>
+          <li>ビザ申請・更新のサポート</li>
+          <li>住居・生活環境の整備支援</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ SECTION
+============================================================ -->
+<section id="tg-faq" class="tg-section">
+  <div class="tg-container">
+    <div class="tg-section-header tg-reveal">
+      <span class="tg-section-eyebrow">FAQ</span>
+      <h2 class="tg-section-title">よくあるご質問</h2>
+      <p class="tg-section-desc">外国人材採用に関するよくある疑問にお答えします</p>
+    </div>
+
+    <div class="tg-faq-list">
+      <div class="tg-faq-item tg-reveal">
+        <button class="tg-faq-q" aria-expanded="false">
+          <span class="tg-faq-q-icon">Q</span>
+          <span class="tg-faq-q-text">初めて外国人材を採用しますが、どこから始めればよいですか？</span>
+          <svg class="tg-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="tg-faq-a" role="region">
+          <div class="tg-faq-a-inner">まずは無料初回相談をご利用ください。採用ニーズ・職種・条件などをヒアリングし、貴社に最適なプランをご提案します。ビザの種類や採用要件など、複雑な情報もわかりやすくご説明しますのでご安心ください。</div>
+        </div>
+      </div>
+
+      <div class="tg-faq-item tg-reveal tg-reveal-delay-1">
+        <button class="tg-faq-q" aria-expanded="false">
+          <span class="tg-faq-q-icon">Q</span>
+          <span class="tg-faq-q-text">ビザ申請はどれくらいの期間がかかりますか？</span>
+          <svg class="tg-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="tg-faq-a" role="region">
+          <div class="tg-faq-a-inner">ビザの種類や申請内容により異なりますが、一般的に在留資格認定証明書の交付まで1〜3ヶ月程度かかります。書類に不備がない場合はスムーズに進みます。当社では書類作成から提出まで全面サポートし、ビザ取得成功率99%を維持しています。</div>
+        </div>
+      </div>
+
+      <div class="tg-faq-item tg-reveal tg-reveal-delay-2">
+        <button class="tg-faq-q" aria-expanded="false">
+          <span class="tg-faq-q-icon">Q</span>
+          <span class="tg-faq-q-text">インターンシップの受け入れと正規採用の違いは何ですか？</span>
+          <svg class="tg-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="tg-faq-a" role="region">
+          <div class="tg-faq-a-inner">インターンシップは留学ビザを持つ学生が週28時間以内で就労できる制度です。企業にとって採用前の「お試し期間」として活用でき、ミスマッチを防ぐ効果があります。インターン後に正規採用に切り替える企業も多く、コスト・リスクを抑えた採用方法として注目されています。</div>
+        </div>
+      </div>
+
+      <div class="tg-faq-item tg-reveal">
+        <button class="tg-faq-q" aria-expanded="false">
+          <span class="tg-faq-q-icon">Q</span>
+          <span class="tg-faq-q-text">日本語が話せない候補者でも採用できますか？</span>
+          <svg class="tg-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="tg-faq-a" role="region">
+          <div class="tg-faq-a-inner">職種・業務内容によって必要な日本語レベルは異なります。当社では日本語レベルをN1〜N5まで対応した候補者を幅広くご紹介可能です。また、採用後の日本語研修プログラムも提供しており、英語や通訳を活用した職場環境づくりもサポートします。</div>
+        </div>
+      </div>
+
+      <div class="tg-faq-item tg-reveal tg-reveal-delay-1">
+        <button class="tg-faq-q" aria-expanded="false">
+          <span class="tg-faq-q-icon">Q</span>
+          <span class="tg-faq-q-text">採用費用はどのくらいかかりますか？</span>
+          <svg class="tg-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="tg-faq-a" role="region">
+          <div class="tg-faq-a-inner">採用形態・ビザ種別・サポート内容により費用は異なります。初回相談は完全無料で、詳細なお見積りもご提案後にご確認いただけます。コストパフォーマンスを重視したプランをご用意しており、透明性のある料金体系でご安心いただけます。まずはお気軽にご相談ください。</div>
+        </div>
+      </div>
+
+      <div class="tg-faq-item tg-reveal tg-reveal-delay-2">
+        <button class="tg-faq-q" aria-expanded="false">
+          <span class="tg-faq-q-icon">Q</span>
+          <span class="tg-faq-q-text">採用後、社員が離職した場合のサポートはありますか？</span>
+          <svg class="tg-faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="tg-faq-a" role="region">
+          <div class="tg-faq-a-inner">ご安心ください。採用後も定期的な面談やフォローアップを継続しており、早期離職の防止に努めています。万が一一定期間内に離職が発生した場合には、再紹介のサポートをご提供するプランもご用意しています。詳細はご相談の際にご確認ください。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS / VOICE SECTION
+============================================================ -->
+<section id="tg-voice" class="tg-section tg-section-alt">
+  <div class="tg-container">
+    <div class="tg-section-header tg-reveal">
+      <span class="tg-section-eyebrow">TESTIMONIALS</span>
+      <h2 class="tg-section-title">ご利用者の声</h2>
+      <p class="tg-section-desc">実際にサービスをご利用いただいた企業・人材の皆様からの声です</p>
+    </div>
+
+    <div class="tg-voice-grid">
+      <div class="tg-voice-card tg-reveal">
+        <span class="tg-voice-tag">IT企業・採用担当</span>
+        <div class="tg-voice-stars">
+          <span class="tg-voice-star">★</span><span class="tg-voice-star">★</span><span class="tg-voice-star">★</span><span class="tg-voice-star">★</span><span class="tg-voice-star">★</span>
+        </div>
+        <p class="tg-voice-text">「ビザ手続きが複雑で不安でしたが、Threadsさんに全部お任せできて本当に助かりました。採用したエンジニアは即戦力として活躍しており、チームの生産性が大幅に向上しました。」</p>
+        <div class="tg-voice-author">
+          <div class="tg-voice-avatar">田</div>
+          <div>
+            <div class="tg-voice-author-name">田中 様</div>
+            <div class="tg-voice-author-role">東京都・IT企業 人事部長</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tg-voice-card tg-reveal tg-reveal-delay-1">
+        <span class="tg-voice-tag">製造業・経営者</span>
+        <div class="tg-voice-stars">
+          <span class="tg-voice-star">★</span><span class="tg-voice-star">★</span><span class="tg-voice-star">★</span><span class="tg-voice-star">★</span><span class="tg-voice-star">★</span>
+        </div>
+        <p class="tg-voice-text">「人手不足が深刻でしたが、Threadsさんのご紹介で優秀なベトナム人スタッフを3名採用できました。皆さん真面目で協調性が高く、工場の雰囲気もとても良くなりました。」</p>
+        <div class="tg-voice-author">
+          <div class="tg-voice-avatar">鈴</div>
+          <div>
+            <div class="tg-voice-author-name">鈴木 様</div>
+            <div class="tg-voice-author-role">神奈川県・製造業 代表取締役</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tg-voice-card tg-reveal tg-reveal-delay-2">
+        <span class="tg-voice-tag">留学生・就活経験者</span>
+        <div class="tg-voice-stars">
+          <span class="tg-voice-star">★</span><span class="tg-voice-star">★</span><span class="tg-voice-star">★</span><span class="tg-voice-star">★</span><span class="tg-voice-star">★</span>
+        </div>
+        <p class="tg-voice-text">「日本で就職したかったけど、どうすればいいかわからなかった。Threadsさんが履歴書の作り方からビザ申請まで全部サポートしてくれました。今は大好きな仕事に就けて毎日が充実しています！」</p>
+        <div class="tg-voice-author">
+          <div class="tg-voice-avatar">🌏</div>
+          <div>
+            <div class="tg-voice-author-name">Nguyen Linh 様</div>
+            <div class="tg-voice-author-role">ベトナム出身・ITエンジニア</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA SECTION
+============================================================ -->
+<section id="tg-cta">
+  <div class="tg-cta-blob tg-cta-blob-1"></div>
+  <div class="tg-cta-blob tg-cta-blob-2"></div>
+  <div class="tg-cta-shape tg-cta-shape-1"></div>
+  <div class="tg-cta-shape tg-cta-shape-2"></div>
+
+  <div class="tg-container">
+    <div class="tg-section-header tg-reveal">
+      <span class="tg-section-eyebrow">GET STARTED</span>
+      <h2 class="tg-section-title" style="color:#fff !important;">まずは無料でご相談ください</h2>
+      <p class="tg-section-desc" style="color:rgba(255,255,255,0.75) !important; margin-bottom:40px !important;">外国人材採用に関するあらゆるご相談に、専任担当が丁寧にお応えします。<br>お気軽にお問い合わせください。</p>
+    </div>
+
+    <div class="tg-cta-btns tg-reveal">
+      <a href="mailto:info@threads-recruit.co.jp" class="tg-btn-primary">
+        <span>📧</span> 無料相談を申し込む
+      </a>
+      <a href="tel:0120-XXX-XXX" class="tg-btn-secondary">
+        <span>📞</span> お電話でのお問い合わせ
+      </a>
+    </div>
+
+    <div class="tg-cta-sub tg-reveal">
+      ✓ 相談無料 &nbsp;｜&nbsp; ✓ 費用の見積もり無料 &nbsp;｜&nbsp; ✓ 返信は24時間以内
+    </div>
+  </div>
+</section>
+
+</div><!-- /#tg-wrap -->
+
+<script>
+(function() {
+  'use strict';
+
+  /* ── Scroll Progress Bar ── */
+  var bar = document.getElementById('tg-progress-bar');
+  function updateProgress() {
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    if (bar) bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+
+  /* ── Intersection Observer for reveal animations ── */
+  var revealEls = document.querySelectorAll('#tg-wrap .tg-reveal, #tg-wrap .tg-timeline-item');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('tg-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(function(el) { observer.observe(el); });
+
+  /* ── Animated counters ── */
+  var counted = false;
+  var countEls = document.querySelectorAll('#tg-wrap .tg-count');
+  function animateCounters() {
+    if (counted) return;
+    var statsSection = document.getElementById('tg-stats');
+    if (!statsSection) return;
+    var rect = statsSection.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.85) {
+      counted = true;
+      countEls.forEach(function(el) {
+        var target = parseInt(el.getAttribute('data-target'), 10);
+        var duration = 1800;
+        var start = null;
+        function step(ts) {
+          if (!start) start = ts;
+          var progress = Math.min((ts - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target);
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = target;
+        }
+        requestAnimationFrame(step);
+      });
+    }
+  }
+  window.addEventListener('scroll', animateCounters, { passive: true });
+  animateCounters();
+
+  /* ── Progress bar fills (Why section) ── */
+  var progressFilled = false;
+  var progressEls = document.querySelectorAll('#tg-wrap .tg-progress-fill');
+  function animateProgress() {
+    if (progressFilled) return;
+    var whySect = document.getElementById('tg-why');
+    if (!whySect) return;
+    var rect = whySect.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.85) {
+      progressFilled = true;
+      progressEls.forEach(function(el) {
+        var w = el.getAttribute('data-width');
+        setTimeout(function() { el.style.width = w + '%'; }, 300);
+      });
+    }
+  }
+  window.addEventListener('scroll', animateProgress, { passive: true });
+  animateProgress();
+
+  /* ── FAQ Accordion ── */
+  var faqBtns = document.querySelectorAll('#tg-wrap .tg-faq-q');
+  faqBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.closest('.tg-faq-item');
+      var isOpen = item.classList.contains('tg-open');
+      // close all
+      document.querySelectorAll('#tg-wrap .tg-faq-item').forEach(function(i) {
+        i.classList.remove('tg-open');
+        i.querySelector('.tg-faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('tg-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ── Hero Canvas Particles ── */
+  var canvas = document.getElementById('tg-hero-canvas');
+  if (canvas && canvas.getContext) {
+    var ctx = canvas.getContext('2d');
+    var particles = [];
+    var W, H;
+    function resize() {
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    for (var i = 0; i < 55; i++) {
+      particles.push({
+        x: Math.random() * (W || 1200),
+        y: Math.random() * (H || 800),
+        r: Math.random() * 3 + 1,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5,
+        alpha: Math.random() * 0.5 + 0.1
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(function(p) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(92,184,106,' + p.alpha + ')';
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+        if (p.x < 0 || p.x > W) p.dx *= -1;
+        if (p.y < 0 || p.y > H) p.dy *= -1;
+      });
+      // Draw connecting lines
+      for (var i = 0; i < particles.length; i++) {
+        for (var j = i + 1; j < particles.length; j++) {
+          var dx = particles[i].x - particles[j].x;
+          var dy = particles[i].y - particles[j].y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = 'rgba(92,184,106,' + (0.15 * (1 - dist / 120)) + ')';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  }
+
+  /* ── Smooth anchor scrolling ── */
+  document.querySelectorAll('#tg-wrap a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+})();
+</script>
