@@ -206,18 +206,25 @@ anthropic.com の画像を使った場合は「Anthropic公式サイトより」
 
 `wp_create_post` ツールで **status="draft"** として投稿する。公開は行わない。
 
-**投稿前にMarkdown→HTML変換を行うこと：**
+**投稿前にMarkdown→Gutenbergブロック形式に変換すること：**
 
-| Markdown | HTML変換後 |
+WordPressのブロックエディタ（Gutenberg）は、各ブロックを `<!-- wp:タイプ -->` 〜 `<!-- /wp:タイプ -->` のコメントで囲む必要がある。生の `<table>` や `<h2>` だけを入れると、エディタ上で「表」「見出し」として認識されず、テーマのCSS（テーブルの枠線など）も当たらないため、**表が表として表示されない**。必ず以下のブロック形式に変換すること。
+
+| Markdown | Gutenbergブロック変換後 |
 |---------|----------|
-| `## タイトル` | `<h2>タイトル</h2>` |
-| `### タイトル` | `<h3>タイトル</h3>` |
-| `\| ... \|` テーブル | `<table><tbody>...</tbody></table>` |
+| `## タイトル` | `<!-- wp:heading -->`<br>`<h2 class="wp-block-heading">タイトル</h2>`<br>`<!-- /wp:heading -->` |
+| `### タイトル` | `<!-- wp:heading {"level":3} -->`<br>`<h3 class="wp-block-heading">タイトル</h3>`<br>`<!-- /wp:heading -->` |
+| `\| ... \|` テーブル | `<!-- wp:table -->`<br>`<figure class="wp-block-table"><table><tbody>...</tbody></table></figure>`<br>`<!-- /wp:table -->`（先頭行は `<th>`、区切り行 `\|---\|` は出力しない、以降は `<td>`） |
 | `**text**` | `<strong>text</strong>` |
-| `---` | `<hr>` |
-| 通常のテキスト行 | `<p>テキスト</p>` |
+| `*text*` | `<em>text</em>` |
+| `---` | `<!-- wp:separator -->`<br>`<hr class="wp-block-separator has-alpha-channel-opacity"/>`<br>`<!-- /wp:separator -->` |
+| `- 箇条書き` | `<!-- wp:list -->`<br>`<ul class="wp-block-list"><!-- wp:list-item --><li>項目</li><!-- /wp:list-item --></ul>`<br>`<!-- /wp:list -->` |
+| 通常のテキスト行 | `<!-- wp:paragraph -->`<br>`<p>テキスト</p>`<br>`<!-- /wp:paragraph -->` |
 
+> ⚠️ **テーブルは必ず `<!-- wp:table -->` ブロックと `<figure class="wp-block-table">` で囲むこと。** これを省くと表が表示されない（過去に発生した不具合）。
 > ⚠️ `<script>` タグは絶対に含めない。WordPressがコンテンツ内のscriptタグを可視テキストとして表示してしまうため。
+
+**変換ヘルパー：** Markdownを上記ブロック形式へ機械変換するには `references/md2gutenberg.py` を使う（`python3 references/md2gutenberg.py 入力.md 出力.html`）。出力をそのまま `wp_create_post` の content に渡す。記事タイトル（`# 行`）は除外され、本文ブロックのみが出力される。
 
 **wp_create_post のパラメータ：**
 
