@@ -48,14 +48,22 @@ description: |
 
 WebSearch と WebFetch を使って情報を収集する。
 
+### テーマタイプ別リサーチ方針
+
+| テーマタイプ | 主な情報源 |
+|------------|---------|
+| ソフトウェアアップデート系 | 公式CHANGELOG・GitHub Releases・リリースノート |
+| 法制度・ニュース系 | 省庁公式サイト（厚労省・入管庁・官報）・信頼できるニュースメディア |
+| 採用ノウハウ系 | 入管庁・厚労省・ハローワーク公式情報 |
+
 **収集する情報:**
-- 公式 CHANGELOG・リリースノート（GitHub等）
+- 公式 CHANGELOG・リリースノート（ソフトウェア系）
 - バージョン番号・リリース日付
 - 機能の正式名称と説明
 - 対象ユーザー・プラン情報
 
 **照合の原則:**
-- 一次情報（公式ドキュメント・GitHub）を最優先とする
+- 一次情報（公式ドキュメント・省庁サイト・GitHub）を最優先とする
 - 数値（バージョン番号・パーセンテージ等）は特に慎重に確認
 - 「〜らしい」「〜と思われる」などの推測表現は使わない。データがない場合は「確認が必要」と明示する
 
@@ -130,25 +138,19 @@ WebSearch と WebFetch を使って情報を収集する。
 
 ## STEP 5: スクリーンショット撮影
 
-スクリーンショットは `output/posts/screenshots/` ディレクトリに保存する。
+### 環境確認（撮影前に必須）
 
-### 撮影手順
+`mcp__Claude_in_Chrome__tabs_context_mcp` ツールが利用可能か確認する。
+**接続されていない場合はSTEP 5全体をスキップし、STEP 7の完了報告に「スクリーンショットなし（Chrome MCP未接続）」と記載する。**
+
+### 撮影手順（Chrome MCP 接続時のみ）
 
 1. `mcp__Claude_in_Chrome__tabs_context_mcp` で `createIfEmpty: true` を指定してタブIDを取得
 2. `mcp__Claude_in_Chrome__navigate` で目的のページに移動（2〜3秒waitを入れる）
 3. `mcp__Claude_in_Chrome__computer` の `screenshot` アクションで内容を確認
-4. PowerShell で画面をキャプチャして正しいファイルパスに保存:
+4. PowerShell（Windows環境）または `scrot` / `gnome-screenshot`（Linux環境）でキャプチャして保存
 
-```powershell
-Add-Type -AssemblyName System.Windows.Forms
-Add-Type -AssemblyName System.Drawing
-$screen = [System.Windows.Forms.Screen]::PrimaryScreen
-$bitmap = New-Object System.Drawing.Bitmap($screen.Bounds.Width, $screen.Bounds.Height)
-$graphics = [System.Drawing.Graphics]::FromImage($bitmap)
-$graphics.CopyFromScreen($screen.Bounds.Location, [System.Drawing.Point]::Empty, $screen.Bounds.Size)
-$bitmap.Save("C:\FULL\PATH\TO\screenshots\NN_description.png", [System.Drawing.Imaging.ImageFormat]::Png)
-$graphics.Dispose(); $bitmap.Dispose()
-```
+スクリーンショットは `output/posts/screenshots/` ディレクトリに保存する。
 
 ### ドメイン制限
 
@@ -176,7 +178,7 @@ anthropic.com の画像を使った場合は「Anthropic公式サイトより」
 **審査員B：文章品質（辛口）**
 - AI臭の残存チェック・構成の一貫性
 - 読者目線での実用性・誤解を招く表現
-- スクリーンショットキャプションと画像の整合性
+- スクリーンショットキャプションと画像の整合性（スクリーンショットがない場合はこの項目をスキップ）
 
 **ファシリテーター：総合調整**
 - 2人の意見を統合して最終スコア算出（100点満点）
@@ -191,7 +193,7 @@ anthropic.com の画像を使った場合は「Anthropic公式サイトより」
 
 ---
 
-## STEP 7: 保存
+## STEP 7: 保存とWordPress下書き投稿
 
 ### ファイル保存
 
@@ -200,12 +202,42 @@ anthropic.com の画像を使った場合は「Anthropic公式サイトより」
 スクリーンショット: output/posts/screenshots/NN_description.png
 ```
 
+### WordPress下書き投稿（毎回必ず実施）
+
+`wp_create_post` ツールで **status="draft"** として投稿する。公開は行わない。
+
+**投稿前にMarkdown→HTML変換を行うこと：**
+
+| Markdown | HTML変換後 |
+|---------|----------|
+| `## タイトル` | `<h2>タイトル</h2>` |
+| `### タイトル` | `<h3>タイトル</h3>` |
+| `\| ... \|` テーブル | `<table><tbody>...</tbody></table>` |
+| `**text**` | `<strong>text</strong>` |
+| `---` | `<hr>` |
+| 通常のテキスト行 | `<p>テキスト</p>` |
+
+> ⚠️ `<script>` タグは絶対に含めない。WordPressがコンテンツ内のscriptタグを可視テキストとして表示してしまうため。
+
+**wp_create_post のパラメータ：**
+
+```
+title:   記事タイトル
+content: HTML変換済みの本文
+excerpt: 記事の概要（2〜3文、検索結果に表示される）
+slug:    article-slug（英数字・ハイフンのみ）
+status:  "draft"  ← 必ずdraftにする。publishにしない
+```
+
+投稿完了後、**投稿IDとWordPress管理画面のURLをユーザーに報告する。**
+
 ### DAILY.md への記録（ファイルが存在する場合のみ）
 
 ```markdown
 ### 記事執筆完了
 - タイトル: [記事タイトル]
 - ファイル: output/posts/YYYY-MM-DD_article-slug.md
+- WordPress投稿ID: [ID]
 - 文字数: XX,XXX文字
 - 採点結果: XX/100点
 - 完了時刻: HH:MM
