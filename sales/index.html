@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>外国人インターンシップ事業 | 株式会社Threads</title>
+  <style>
+    :root {
+      --primary: #1a3a5c;
+      --accent: #e85d26;
+      --accent2: #f5a623;
+      --light: #f0f4f8;
+      --white: #ffffff;
+      --text: #2d3748;
+      --text-light: #718096;
+      --border: #e2e8f0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      background: #fff;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(26,58,92,0.97);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+    }
+    .nav-logo {
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent2); }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f2744 0%, #1a3a5c 50%, #1e4d7a 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 60% 40%, rgba(232,93,38,0.12) 0%, transparent 60%),
+                  radial-gradient(circle at 20% 80%, rgba(245,166,35,0.08) 0%, transparent 50%);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      letter-spacing: 0.1em;
+    }
+    #hero h1 {
+      color: #fff;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    #hero h1 span { color: var(--accent2); }
+    #hero p {
+      color: rgba(255,255,255,0.78);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 48px;
+      position: relative;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-num {
+      color: var(--accent2);
+      font-size: 2.4rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .stat-label {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.8rem;
+      margin-top: 4px;
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+      animation: bounce 2s infinite;
+    }
+    .scroll-hint::after {
+      content: '';
+      display: block;
+      width: 2px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ===== SECTION BASE ===== */
+    section {
+      padding: 100px 24px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .section-sub {
+      color: var(--text-light);
+      font-size: 1rem;
+      max-width: 640px;
+      margin-bottom: 60px;
+    }
+    .divider {
+      width: 48px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    /* ===== VISA TYPES ===== */
+    #visa-types { background: var(--light); }
+
+    .visa-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .visa-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px 36px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      border-top: 4px solid var(--primary);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .visa-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+    .visa-card.accent { border-top-color: var(--accent); }
+    .visa-tag {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+    .visa-card.accent .visa-tag { background: var(--accent); }
+    .visa-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .visa-card p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+    .visa-specs {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .visa-specs li {
+      display: flex;
+      gap: 10px;
+      font-size: 0.875rem;
+      align-items: flex-start;
+    }
+    .visa-specs li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ===== COMPARISON TABLE ===== */
+    #comparison { background: #fff; }
+
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+    thead th {
+      background: var(--primary);
+      color: #fff;
+      padding: 14px 16px;
+      text-align: center;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    thead th:first-child { text-align: left; border-radius: 8px 0 0 0; }
+    thead th:last-child { border-radius: 0 8px 0 0; }
+    tbody tr:nth-child(even) { background: var(--light); }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      text-align: center;
+    }
+    tbody td:first-child {
+      font-weight: 700;
+      text-align: left;
+      color: var(--primary);
+    }
+    .highlight-col { background: rgba(232,93,38,0.06) !important; }
+
+    /* ===== MERITS ===== */
+    #merits { background: var(--light); }
+
+    .merits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .merits-block h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .merits-block h3 span {
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.72rem;
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+    .merit-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .merit-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .merit-icon.blue { background: var(--primary); }
+    .merit-text strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+    .merit-text p {
+      font-size: 0.82rem;
+      color: var(--text-light);
+    }
+
+    /* ===== INDUSTRIES ===== */
+    #industries { background: #fff; }
+
+    .industry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .industry-card {
+      background: var(--light);
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-align: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .industry-card:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+    .industry-card:hover .industry-name,
+    .industry-card:hover .industry-role { color: #fff; }
+    .industry-icon { font-size: 2.2rem; margin-bottom: 10px; }
+    .industry-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .industry-role {
+      font-size: 0.75rem;
+      color: var(--text-light);
+    }
+
+    /* ===== COUNTRIES ===== */
+    #countries { background: var(--primary); padding: 80px 24px; }
+
+    #countries .section-title { color: #fff; }
+    #countries .divider { background: var(--accent2); }
+    #countries .section-label { color: var(--accent2); }
+    .country-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 40px;
+    }
+    .country-tag {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .country-tag span { font-size: 1.4rem; }
+
+    /* ===== FLOW ===== */
+    #flow { background: var(--light); }
+
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+    .flow-steps::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .flow-step {
+      display: flex;
+      gap: 28px;
+      padding-bottom: 40px;
+      position: relative;
+    }
+    .flow-step:last-child { padding-bottom: 0; }
+    .step-num {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .step-content {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px 28px;
+      flex: 1;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .step-content h4 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+    .step-content p {
+      font-size: 0.875rem;
+      color: var(--text-light);
+    }
+
+    /* ===== PRICING ===== */
+    #pricing { background: #fff; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .pricing-card {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    .pricing-head {
+      background: var(--primary);
+      color: #fff;
+      padding: 28px 32px;
+    }
+    .pricing-card:nth-child(2) .pricing-head { background: var(--accent); }
+    .pricing-type {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
+    .pricing-head h3 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+    .pricing-body {
+      background: #fff;
+      padding: 32px;
+    }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      gap: 16px;
+    }
+    .price-row:last-child { border-bottom: none; }
+    .price-label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      flex: 1;
+    }
+    .price-value {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: right;
+    }
+
+    /* ===== REQUIREMENTS ===== */
+    #requirements { background: var(--light); }
+
+    .req-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .req-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .req-card h4 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .req-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+    .req-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .req-card ul li {
+      font-size: 0.83rem;
+      color: var(--text);
+      padding-left: 16px;
+      position: relative;
+    }
+    .req-card ul li::before {
+      content: '●';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.5rem;
+      top: 6px;
+    }
+
+    /* ===== CTA ===== */
+    #cta {
+      background: linear-gradient(135deg, #0f2744, #1a3a5c);
+      padding: 100px 24px;
+      text-align: center;
+    }
+    #cta h2 {
+      color: #fff;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+    #cta p {
+      color: rgba(255,255,255,0.72);
+      font-size: 1rem;
+      margin-bottom: 48px;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 16px 40px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0a1e35;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.82rem;
+    }
+    footer strong { color: rgba(255,255,255,0.8); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .visa-grid, .merits-grid, .pricing-grid, .req-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Threads</div>
+  <ul class="nav-links">
+    <li><a href="#visa-types">ビザ区分</a></li>
+    <li><a href="#merits">メリット</a></li>
+    <li><a href="#industries">受入業種</a></li>
+    <li><a href="#pricing">費用</a></li>
+    <li><a href="#cta">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge">外国人インターンシップ事業</div>
+  <h1>海外の優秀な学生が、<br><span>あなたの会社で活躍する。</span></h1>
+  <p>株式会社Threadsは、海外大学と連携した外国人インターンシッププログラムを通じて、企業と学生を繋ぐ専門エージェントです。ビザ申請から生活サポートまで、すべてお任せください。</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">7ヵ国</div>
+      <div class="stat-label">提携国</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3〜12</div>
+      <div class="stat-label">ヶ月の受入期間</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">N3以上</div>
+      <div class="stat-label">日本語レベル</div>
+    </div>
+  </div>
+  <div class="scroll-hint">スクロール</div>
+</section>
+
+<!-- VISA TYPES -->
+<section id="visa-types">
+  <div class="container">
+    <div class="section-label">VISA TYPE</div>
+    <div class="divider"></div>
+    <h2 class="section-title">2つのインターンシップビザ</h2>
+    <p class="section-sub">受入期間や目的に応じて、最適なビザ区分をご提案します。</p>
+    <div class="visa-grid">
+
+      <div class="visa-card">
+        <div class="visa-tag">特定活動ビザ</div>
+        <h3>特定活動インターンシップ<br>（3〜12ヶ月）</h3>
+        <p>海外大学の正規カリキュラムとして認定された職場体験プログラム。大学卒業要件の単位取得と連動しているため、意欲の高い学生が集まります。</p>
+        <ul class="visa-specs">
+          <li>滞在期間：最長12ヶ月（大学判断で3・6ヶ月も可）</li>
+          <li>対象：海外大学（短大・四年制・大学院）在学中の学生</li>
+          <li>日本語：N3以上または同等レベル</li>
+          <li>単位取得：あり（大学の正規プログラム）</li>
+          <li>ビザ申請：特定活動 告示9号・12号</li>
+          <li>受入可能人数：常勤職員数に応じた枠あり</li>
+        </ul>
+      </div>
+
+      <div class="visa-card accent">
+        <div class="visa-tag">短期滞在ビザ</div>
+        <h3>短期滞在インターンシップ<br>（90日未満）</h3>
+        <p>観光ビザで来日する学生を対象とした短期プログラム。在留カードや複雑なビザ申請が不要なため、手続きがシンプルで迅速に受入できます。</p>
+        <ul class="visa-specs">
+          <li>滞在期間：90日未満</li>
+          <li>対象：海外大学・日本語学校に在学中の学生</li>
+          <li>日本語：N4以上または同等レベル</li>
+          <li>在留カード：不要（短期滞在のため）</li>
+          <li>社会保険・国民健康保険：適用外</li>
+          <li>手続き：特定活動ビザより簡易</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section id="comparison">
+  <div class="container">
+    <div class="section-label">COMPARISON</div>
+    <div class="divider"></div>
+    <h2 class="section-title">在留資格の比較</h2>
+    <p class="section-sub">日本で外国人を受け入れる際の主な在留資格を比較しています。インターンシップビザは柔軟な運用が可能です。</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>就職ビザ<br><small>技・人・国</small></th>
+            <th>留学ビザ<br><small>資格外活動</small></th>
+            <th class="highlight-col">特定活動ビザ<br><small>インターンシップ</small></th>
+            <th>技能実習ビザ</th>
+            <th>特定技能ビザ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>学歴</td>
+            <td>日本・海外大学/院<br>日本専門・語学校</td>
+            <td>日本の大学・語学校</td>
+            <td class="highlight-col">海外大学在籍</td>
+            <td>特になし</td>
+            <td>特になし</td>
+          </tr>
+          <tr>
+            <td>期間</td>
+            <td>無制限（更新可）</td>
+            <td>ビザ有効期間内</td>
+            <td class="highlight-col">3ヶ月・6ヶ月・12ヶ月</td>
+            <td>最長5年</td>
+            <td>通年5年</td>
+          </tr>
+          <tr>
+            <td>雇用形態</td>
+            <td>直接雇用</td>
+            <td>アルバイト</td>
+            <td class="highlight-col">実習契約（雇用契約なし）</td>
+            <td>直接雇用</td>
+            <td>直接雇用</td>
+          </tr>
+          <tr>
+            <td>労働時間</td>
+            <td>フルタイム</td>
+            <td>週28h以内<br>夏休み40h</td>
+            <td class="highlight-col">労働基準法に基づく</td>
+            <td>週40時間</td>
+            <td>フルタイム</td>
+          </tr>
+          <tr>
+            <td>入国まで</td>
+            <td>海外から3〜4ヶ月</td>
+            <td>入国済みのみ</td>
+            <td class="highlight-col">4〜6ヶ月程度</td>
+            <td>6〜8ヶ月</td>
+            <td>3〜4ヶ月</td>
+          </tr>
+          <tr>
+            <td>給与相場</td>
+            <td>日本人同等以上</td>
+            <td>最低時給以上</td>
+            <td class="highlight-col">最低賃金以上の実習対価</td>
+            <td>最低賃金以上</td>
+            <td>日本人同等以上</td>
+          </tr>
+          <tr>
+            <td>解雇・転職</td>
+            <td>日本人と同様</td>
+            <td>解雇可能</td>
+            <td class="highlight-col">原則不可・途中帰国なし</td>
+            <td>原則不可</td>
+            <td>同一業務区分内で可</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- MERITS -->
+<section id="merits">
+  <div class="container">
+    <div class="section-label">BENEFITS</div>
+    <div class="divider"></div>
+    <h2 class="section-title">インターンシップのメリット</h2>
+    <p class="section-sub">受入企業・参加学生の双方にとって大きな価値を生み出します。</p>
+    <div class="merits-grid">
+
+      <div class="merits-block">
+        <h3><span>受入企業側</span>のメリット</h3>
+        <div class="merit-item">
+          <div class="merit-icon blue">🌏</div>
+          <div class="merit-text">
+            <strong>グローバル対応力の強化</strong>
+            <p>多様なバックグラウンドを持つ学生を迎えることで、社内のグローバル意識が向上します。</p>
+          </div>
+        </div>
+        <div class="merit-item">
+          <div class="merit-icon blue">💼</div>
+          <div class="merit-text">
+            <strong>採用活動の補完・即戦力確保</strong>
+            <p>インターンシップ後に就職ビザへの切り替えが可能。優秀な学生の早期確保につながります。</p>
+          </div>
+        </div>
+        <div class="merit-item">
+          <div class="merit-icon blue">🗣️</div>
+          <div class="merit-text">
+            <strong>多言語対応・通訳業務</strong>
+            <p>外国語対応が必要な業務に即日活躍。観光・ホテル・空港業界に特に有効です。</p>
+          </div>
+        </div>
+        <div class="merit-item">
+          <div class="merit-icon blue">📋</div>
+          <div class="merit-text">
+            <strong>手続き・管理をすべて委託</strong>
+            <p>ビザ申請・書類準備・生活サポートなど、煩雑な業務はThreadsにすべてお任せください。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="merits-block">
+        <h3><span>参加学生側</span>のメリット</h3>
+        <div class="merit-item">
+          <div class="merit-icon">🎓</div>
+          <div class="merit-text">
+            <strong>大学の正規単位として認定</strong>
+            <p>卒業要件の単位取得が可能。学業と実務経験を同時に積める正規カリキュラムです。</p>
+          </div>
+        </div>
+        <div class="merit-item">
+          <div class="merit-icon">🏯</div>
+          <div class="merit-text">
+            <strong>日本での就業・文化体験</strong>
+            <p>観光地視察・文化体験・ボランティアなどの課外プログラムも充実しています。</p>
+          </div>
+        </div>
+        <div class="merit-item">
+          <div class="merit-icon">💹</div>
+          <div class="merit-text">
+            <strong>実習対価（報酬）の受取</strong>
+            <p>最低賃金以上の実習対価が支払われます（特定活動ビザの場合）。</p>
+          </div>
+        </div>
+        <div class="merit-item">
+          <div class="merit-icon">🚀</div>
+          <div class="merit-text">
+            <strong>将来の就職・キャリアアップ</strong>
+            <p>日本企業での実務経験はキャリア形成に大きなアドバンテージとなります。</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="container">
+    <div class="section-label">INDUSTRIES</div>
+    <div class="divider"></div>
+    <h2 class="section-title">受入業種・実績</h2>
+    <p class="section-sub">多様な業種で実績があります。学生の専攻と業種のマッチングを丁寧に行います。</p>
+    <div class="industry-grid">
+      <div class="industry-card">
+        <div class="industry-icon">🏨</div>
+        <div class="industry-name">ホテル・旅館</div>
+        <div class="industry-role">接客・フロント・通訳</div>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon">✈️</div>
+        <div class="industry-name">空港</div>
+        <div class="industry-role">グランドスタッフ・通訳</div>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon">🎿</div>
+        <div class="industry-name">スキー場</div>
+        <div class="industry-role">リフト案内・レストラン対応</div>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon">🎡</div>
+        <div class="industry-name">テーマパーク</div>
+        <div class="industry-role">接客・通訳</div>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon">📦</div>
+        <div class="industry-name">物流</div>
+        <div class="industry-role">センター内業務・管理</div>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon">💻</div>
+        <div class="industry-name">IT・Web</div>
+        <div class="industry-role">プログラミング・Web管理</div>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon">🚗</div>
+        <div class="industry-name">自動車</div>
+        <div class="industry-role">整備業務・故障修理</div>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon">🌾</div>
+        <div class="industry-name">農業・酪農</div>
+        <div class="industry-role">畑作業・仕分け作業</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTRIES -->
+<section id="countries">
+  <div class="container">
+    <div class="section-label">PARTNER COUNTRIES</div>
+    <div class="divider"></div>
+    <h2 class="section-title">現在支援している国・地域</h2>
+    <p style="color:rgba(255,255,255,0.65); font-size:0.95rem; margin-bottom: 0;">各国の大学と提携し、専門知識を持つ意欲ある学生を紹介しています。</p>
+    <div class="country-tags">
+      <div class="country-tag"><span>🇨🇳</span> 中国</div>
+      <div class="country-tag"><span>🇻🇳</span> ベトナム</div>
+      <div class="country-tag"><span>🇮🇩</span> インドネシア</div>
+      <div class="country-tag"><span>🇲🇾</span> マレーシア</div>
+      <div class="country-tag"><span>🇵🇭</span> フィリピン</div>
+      <div class="country-tag"><span>🇳🇵</span> ネパール</div>
+      <div class="country-tag"><span>🇲🇳</span> モンゴル</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-label">PRICING</div>
+    <div class="divider"></div>
+    <h2 class="section-title">費用のご案内</h2>
+    <p class="section-sub">成功報酬型のため、学生受入が確定してからのお支払いです。</p>
+    <div class="pricing-grid">
+
+      <div class="pricing-card">
+        <div class="pricing-head">
+          <div class="pricing-type">特定活動インターンシップ（3〜12ヶ月）</div>
+          <h3>弊社への委託費用</h3>
+        </div>
+        <div class="pricing-body">
+          <div class="price-row">
+            <div class="price-label">登録費（初回のみ）</div>
+            <div class="price-value">50,000円（税別）</div>
+          </div>
+          <div class="price-row">
+            <div class="price-label">業務委託費</div>
+            <div class="price-value">月額 60,000円／人（税別）<br><small style="color:var(--text-light);font-weight:400">月末締め・翌月25日払い</small></div>
+          </div>
+          <div class="price-row">
+            <div class="price-label">在留資格認定申請費用（行政書士）</div>
+            <div class="price-value">30,000円／人（税別）</div>
+          </div>
+          <div class="price-row">
+            <div class="price-label">実習対価（学生へ）</div>
+            <div class="price-value">時間給×実習時間<br><small style="color:var(--text-light);font-weight:400">各地域最低賃金以上</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-head">
+          <div class="pricing-type">短期滞在インターンシップ（90日未満）</div>
+          <h3>弊社への委託費用</h3>
+        </div>
+        <div class="pricing-body">
+          <div class="price-row">
+            <div class="price-label">登録費（初回のみ）</div>
+            <div class="price-value">50,000円（税別）</div>
+          </div>
+          <div class="price-row">
+            <div class="price-label">業務委託費</div>
+            <div class="price-value">月額 40,000円／人（税別）<br><small style="color:var(--text-light);font-weight:400">入国日・帰国日により日割計算</small></div>
+          </div>
+          <div class="price-row">
+            <div class="price-label">生活補助費（学生へ直接支給）</div>
+            <div class="price-value">3,000〜4,000円×滞在日数</div>
+          </div>
+          <div class="price-row">
+            <div class="price-label">往復渡航費・寮費・食費</div>
+            <div class="price-value">受入企業ご負担</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <p style="margin-top:24px; font-size:0.82rem; color:var(--text-light);">
+      ※ 学生受け入れ地域によっては、在留資格申請に伴う交通費・出張費として別途10,000円（税別）が発生する場合があります。<br>
+      ※ 入出国時の送迎を弊社にご委託の場合、交通費・出張費（1日20,000円（税別））が別途かかります。
+    </p>
+  </div>
+</section>
+
+<!-- REQUIREMENTS -->
+<section id="requirements">
+  <div class="container">
+    <div class="section-label">REQUIREMENTS</div>
+    <div class="divider"></div>
+    <h2 class="section-title">受入に必要な対応事項</h2>
+    <p class="section-sub">各種手続きについてはThreadsがサポートします。受入前にご確認ください。</p>
+    <div class="req-grid">
+
+      <div class="req-card">
+        <h4><div class="req-icon">🏛️</div>入国管理局（ビザ申請）</h4>
+        <ul>
+          <li>申請者は受入企業であり、責任は企業にあることを理解する</li>
+          <li>申請期間を厳守する</li>
+          <li>実習責任者の配属と実習プログラムの策定が必要</li>
+          <li>受入人数は常勤職員数に応じた制限あり（最大：常勤×1/20）</li>
+        </ul>
+      </div>
+
+      <div class="req-card">
+        <h4><div class="req-icon">⚖️</div>労働基準局（雇用・契約）</h4>
+        <ul>
+          <li>実習対価は直接払い（労働対価ではなく生活補助費として）</li>
+          <li>派遣会社・紹介企業への派遣費用は支払い不可</li>
+          <li>雇用契約書は不可、大学と企業の実習契約書が必要</li>
+        </ul>
+      </div>
+
+      <div class="req-card">
+        <h4><div class="req-icon">💴</div>税務（所得税・租税条約）</h4>
+        <ul>
+          <li>1年未満帰国のため非居住者扱い→所得税20.42%</li>
+          <li>中国・韓国・台湾など一部国は租税条約により免税手続き可</li>
+          <li>免税手続きは初回実習対価支払い前に実施が必要</li>
+        </ul>
+      </div>
+
+      <div class="req-card">
+        <h4><div class="req-icon">🏠</div>生活環境の整備</h4>
+        <ul>
+          <li>寮の確保（家電製品の準備含む）</li>
+          <li>通勤手段の確保（電車・自転車・送迎バスなど）</li>
+          <li>食事環境の確保（社員食堂または食費支給）</li>
+          <li>Wi-Fiの設置</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section id="flow" style="background:#fff;">
+  <div class="container">
+    <div class="section-label">HOW IT WORKS</div>
+    <div class="divider"></div>
+    <h2 class="section-title">受入の流れ</h2>
+    <p class="section-sub">お問い合わせからインターンシップ開始まで、Threadsがすべてサポートします。</p>
+    <div class="flow-steps" style="max-width:700px;">
+      <div class="flow-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>お問い合わせ・初回ご相談</h4>
+          <p>受入希望の業種・期間・人数などをお聞きし、最適なプランをご提案します。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>実習カリキュラムの作成</h4>
+          <p>業務内容・ローテーション・1日のスケジュールなど、詳細な実習計画を共同で策定します。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>学生のマッチング・選定</h4>
+          <p>提携大学から業種・学科・日本語レベルに合った候補学生をご紹介します。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>ビザ申請・書類手続き</h4>
+          <p>在留資格認定申請など、すべての書類手続きをThreadsと提携行政書士が対応します。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h4>入国・インターンシップ開始</h4>
+          <p>来日後の生活サポート・課外カリキュラムの実施まで、在日中も継続してサポートします。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <h4>帰国・継続雇用のご検討</h4>
+          <p>帰国後も就職ビザへの切り替えによる正規採用が可能です。ご相談ください。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container">
+    <h2>まずはお気軽にご相談ください</h2>
+    <p>外国人インターンシップの導入に関するご質問・ご相談を承っています。<br>貴社の状況に合わせた最適なプランをご提案します。</p>
+    <div class="cta-buttons">
+      <a href="mailto:info@threads.co.jp" class="btn btn-primary">お問い合わせ・資料請求</a>
+      <a href="tel:0000000000" class="btn btn-secondary">お電話でのご相談</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>株式会社Threads</strong></p>
+  <p style="margin-top:8px;">© 2026 Threads Inc. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
