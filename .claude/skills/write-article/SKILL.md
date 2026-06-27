@@ -25,7 +25,7 @@ description: |
 4. **STEP 4: 記事執筆** — 10,000文字以上、初心者向け、実務重視
 5. **STEP 5: スクリーンショット撮影** — Claude in Chrome で関連ページを撮影
 6. **STEP 6: 3人採点パネル** — 95点以上で通過、未満は修正して再採点
-7. **STEP 7: 保存** — output/posts/ にファイル保存
+7. **STEP 7: 保存** — output/posts/ にファイル保存、Related Postsボックス＋お問い合わせバナーを追加してWordPress下書き投稿
 
 ---
 
@@ -225,6 +225,44 @@ WordPressのブロックエディタ（Gutenberg）は、各ブロックを `<!-
 > ⚠️ `<script>` タグは絶対に含めない。WordPressがコンテンツ内のscriptタグを可視テキストとして表示してしまうため。
 
 **変換ヘルパー：** Markdownを上記ブロック形式へ機械変換するには `references/md2gutenberg.py` を使う（`python3 references/md2gutenberg.py 入力.md 出力.html`）。出力をそのまま `wp_create_post` の content に渡す。記事タイトル（`# 行`）は除外され、本文ブロックのみが出力される。
+
+**Related Posts ボックスとお問い合わせバナーの追加（Gutenberg変換後・投稿前に必ず実施）：**
+
+すべての記事の本文末尾（まとめの直後）に、以下の2つを必ず追加する。既存記事（例: post ID 466）で使われている実際のスタイルに合わせること。
+
+1. **Related Posts ボックス** — 関連記事2〜3件へのリンク。
+   - `wp_list_posts` または `wp_search_posts` で、今回の記事と関連性の高い既存の公開済み記事（status: publish）を2〜3件探す（カテゴリー・タグが近いもの、または同じビザ種別・テーマを扱うものを優先）。
+   - 見つけたら、各記事のタイトルとURL（slugから `https://www.threads-global.com/[slug]/` の形式で組み立てる）を使って以下のテンプレートに埋め込む：
+
+   ```html
+   <!-- wp:html -->
+   <div style="background:#f0f7ee;border-radius:16px;padding:1.8rem 2rem;margin:2.5rem 0;border-left:4px solid #2d7a3a;">
+     <p style="font-family:'Poppins',sans-serif;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:#e8620a;margin:0 0 1rem;">Related Posts</p>
+     <p style="font-family:'Noto Serif JP',serif;font-size:1.15rem;font-weight:600;color:#1a2a1f;margin:0 0 1.2rem;">あわせて読みたい関連記事</p>
+     <ul style="list-style:none;padding:0;margin:0;">
+       <li style="margin-bottom:0.8rem;"><a href="[関連記事1のURL]" style="color:#2d7a3a;text-decoration:none;font-weight:600;line-height:1.6;">[関連記事1のタイトル]</a></li>
+       <li style="margin-bottom:0.8rem;"><a href="[関連記事2のURL]" style="color:#2d7a3a;text-decoration:none;font-weight:600;line-height:1.6;">[関連記事2のタイトル]</a></li>
+       <li style="margin-bottom:0.8rem;"><a href="[関連記事3のURL]" style="color:#2d7a3a;text-decoration:none;font-weight:600;line-height:1.6;">[関連記事3のタイトル]</a></li>
+     </ul>
+   </div>
+   <!-- /wp:html -->
+   ```
+
+   - 関連記事が2件しか見つからない場合は `<li>` を2つにする。0件の場合（公開済み記事がまだ少ない等）はこのブロック自体を省略してよいが、その場合は完了報告でその旨を明記する。
+
+2. **お問い合わせバナー** — 固定の汎用CTA。毎回そのまま使う（変更不要）：
+
+   ```html
+   <!-- wp:html -->
+   <a href="https://www.threads-global.com/%e3%81%8a%e5%95%8f%e3%81%84%e5%90%88%e3%82%8f%e3%81%9b/" style="display:inline-block;">
+     <img src="https://www.threads-global.com/wp-content/uploads/2026/06/toiawase-03.png"
+          alt="お問い合わせはこちら"
+          style="max-width:100%;height:auto;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.1);" />
+   </a>
+   <!-- /wp:html -->
+   ```
+
+   両方とも `<!-- wp:html -->` ブロックとして本文HTMLの最後に追記する（Related Posts → お問い合わせバナーの順）。
 
 **カテゴリーとタグの選定（投稿前に必ず実施）：**
 
