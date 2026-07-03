@@ -282,9 +282,9 @@ WordPressのブロックエディタ（Gutenberg）は、各ブロックを `<!-
      <p style="font-family:'Poppins',sans-serif;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:#e8620a;margin:0 0 1rem;">Related Posts</p>
      <p style="font-family:'Noto Serif JP',serif;font-size:1.15rem;font-weight:600;color:#1a2a1f;margin:0 0 1.2rem;">あわせて読みたい関連記事</p>
      <ul style="list-style:none;padding:0;margin:0;">
-       <li style="margin-bottom:0.8rem;"><a href="[関連記事1のURL]" style="color:#2d7a3a;text-decoration:none;font-weight:600;line-height:1.6;">[関連記事1のタイトル]</a></li>
-       <li style="margin-bottom:0.8rem;"><a href="[関連記事2のURL]" style="color:#2d7a3a;text-decoration:none;font-weight:600;line-height:1.6;">[関連記事2のタイトル]</a></li>
-       <li style="margin-bottom:0.8rem;"><a href="[関連記事3のURL]" style="color:#2d7a3a;text-decoration:none;font-weight:600;line-height:1.6;">[関連記事3のタイトル]</a></li>
+       <li style="margin-bottom:0.8rem;"><a href="[関連記事1のURL]" target="_blank" rel="noopener noreferrer" style="color:#2d7a3a;text-decoration:none;font-weight:600;line-height:1.6;">[関連記事1のタイトル]</a></li>
+       <li style="margin-bottom:0.8rem;"><a href="[関連記事2のURL]" target="_blank" rel="noopener noreferrer" style="color:#2d7a3a;text-decoration:none;font-weight:600;line-height:1.6;">[関連記事2のタイトル]</a></li>
+       <li style="margin-bottom:0.8rem;"><a href="[関連記事3のURL]" target="_blank" rel="noopener noreferrer" style="color:#2d7a3a;text-decoration:none;font-weight:600;line-height:1.6;">[関連記事3のタイトル]</a></li>
      </ul>
    </div>
    <!-- /wp:html -->
@@ -296,7 +296,7 @@ WordPressのブロックエディタ（Gutenberg）は、各ブロックを `<!-
 
    ```html
    <!-- wp:html -->
-   <a href="https://www.threads-global.com/%e3%81%8a%e5%95%8f%e3%81%84%e5%90%88%e3%82%8f%e3%81%9b/" style="display:inline-block;">
+   <a href="https://www.threads-global.com/%e3%81%8a%e5%95%8f%e3%81%84%e5%90%88%e3%82%8f%e3%81%9b/" target="_blank" rel="noopener noreferrer" style="display:inline-block;">
      <img src="https://www.threads-global.com/wp-content/uploads/2026/06/toiawase-03.png"
           alt="お問い合わせはこちら"
           style="max-width:100%;height:auto;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.1);" />

@@ -18,6 +18,12 @@ def inline(text):
     text = html.escape(text, quote=False)
     text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
     text = re.sub(r'(?<!\*)\*([^*]+?)\*(?!\*)', r'<em>\1</em>', text)
+    # Markdownリンク -> <a> (別タブで開く)
+    text = re.sub(
+        r'\[([^\]]+)\]\((https?://[^)]+)\)',
+        r'<a href="\2" target="_blank" rel="noopener noreferrer">\1</a>',
+        text
+    )
     return text
 
 def convert(md):
